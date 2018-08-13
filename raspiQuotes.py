@@ -32,6 +32,7 @@ from PIL import ImageFont
 import subprocess
 
 import json, os, random
+import util
 
 # Get data
 curr_path = os.getcwd()
@@ -44,7 +45,8 @@ for fileItem in os.listdir(curr_path):
 jsonfile = random.choice(jsonfiles)
 with open(jsonfile) as jsondata:
     quotes = json.load(jsondata)
-
+short_quotes = util.getShortQuotes(quotes,60)
+print short_quotes
 print 'Loading + '+str(jsonfile)
 # Input pins:
 L_pin = 27
@@ -116,7 +118,11 @@ u_pin_old = 0
 d_pin_old = 0
 l_pin_old = 0
 r_pin_old = 0
-keys = random.choice(quotes.keys())
+key = random.choice(short_quotes.keys())
+quote = short_quotes[key]
+quote_sentence = util.convertToDisplay(quote, 17)
+print quote
+max_len = len(quote_sentence)
 while True:
     '''
     # GPIO Poll
@@ -174,10 +180,10 @@ while True:
     '''
     # Draw a black filled box to clear the image.
     draw.rectangle((0,0,width,height), outline=0, fill=0)
-    quote = quotes[keys]
-    print quote
-    maxlen = len(quote)
-    if maxlen>14:
+    
+    #print quote
+    '''
+    if max_len>0:
         draw.text((0,0),str(quote[0:15]),font=font,fill=255)
     else:
         draw.text((0,0),str(quote[0:maxlen]),font=font,fill=255)
@@ -193,7 +199,16 @@ while True:
         draw.text((0,23),str(quote[45:60]),font=font,fill=255)
     else:
         draw.text((0,23),str(quote[45:maxlen]),font=font,fill=255)
-       
+    '''
+    if max_len > 0:
+        draw.text((0,0),str(quote_sentence[0]),font=font,fill=255)
+    if max_len > 1:
+        draw.text((0,7),str(quote_sentence[1]),font=font,fill=255)
+    if max_len > 2:
+        draw.text((0,15),str(quote_sentence[2]),font=font,fill=255)
+    if max_len > 3:
+        draw.text((0,23),str(quote_sentence[3]),font=font,fill=255)
+
     disp.image(image)
     disp.display()
     time.sleep(0.1)
