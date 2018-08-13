@@ -39,12 +39,13 @@ jsonfiles = []
 for fileItem in os.listdir(curr_path):
     if '.json' in fileItem:
         jsonfiles.append(fileItem)
-print jsonfiles
+#print jsonfiles
 
 jsonfile = random.choice(jsonfiles)
 with open(jsonfile) as jsondata:
     quotes = json.load(jsondata)
-print quotes
+
+print 'Loading + '+str(jsonfile)
 # Input pins:
 L_pin = 27
 R_pin = 23
@@ -109,24 +110,15 @@ font = ImageFont.load_default()
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 #font = ImageFont.truetype('pixelmix.ttf', 8)
-print 'Before Cards'
-# Trell Stuff
-cards = tp.getCardsFromURL(url)
-
-nCards = len(cards)
-dispDepth = 3
-
-currCard = 0
-currDepth = 0
-
-maxDepth = len(cards[sorted(cards.keys())[currCard%nCards]])
-
+print 'Loading Fonts'
 # Var Inits
 u_pin_old = 0
 d_pin_old = 0
 l_pin_old = 0
 r_pin_old = 0
+keys = random.choice(quotes.keys())
 while True:
+    '''
     # GPIO Poll
     u_pin = GPIO.input(U_pin)
     d_pin = GPIO.input(D_pin)
@@ -179,3 +171,30 @@ while True:
     l_pin_old = l_pin
     r_pin_old = r_pin
     time.sleep(.1)
+    '''
+    # Draw a black filled box to clear the image.
+    draw.rectangle((0,0,width,height), outline=0, fill=0)
+    quote = quotes[keys]
+    print quote
+    maxlen = len(quote)
+    if maxlen>14:
+        draw.text((0,0),str(quote[0:15]),font=font,fill=255)
+    else:
+        draw.text((0,0),str(quote[0:maxlen]),font=font,fill=255)
+    if maxlen>29:
+        draw.text((0,7),str(quote[15:30]),font=font,fill=255)
+    else:
+        draw.text((0,7),str(quote[15:maxlen]),font=font,fill=255)
+    if maxlen>44:
+        draw.text((0,15),str(quote[30:45]),font=font,fill=255)
+    else:
+        draw.text((0,15),str(quote[30::maxlen]),font=font,fill=255)
+    if maxlen>59:
+        draw.text((0,23),str(quote[45:60]),font=font,fill=255)
+    else:
+        draw.text((0,23),str(quote[45:maxlen]),font=font,fill=255)
+       
+    disp.image(image)
+    disp.display()
+    time.sleep(0.1)
+
