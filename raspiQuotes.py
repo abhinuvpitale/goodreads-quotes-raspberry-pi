@@ -123,6 +123,7 @@ quote = short_quotes[key]
 quote_sentence = util.convertToDisplay(quote, 17)
 print quote
 max_len = len(quote_sentence)
+count  = 0
 while True:
     '''
     # GPIO Poll
@@ -180,7 +181,14 @@ while True:
     '''
     # Draw a black filled box to clear the image.
     draw.rectangle((0,0,width,height), outline=0, fill=0)
-    
+    if count > 360:
+        key = random.choice(short_quotes.keys())
+        quote = short_quotes[key]
+        quote_sentence = util.convertToDisplay(quote, 17)
+        count = 0
+        
+    count = count + 1
+
     #print quote
     '''
     if max_len>0:
