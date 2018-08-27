@@ -33,7 +33,9 @@ import subprocess
 
 import json, os, random
 import util
+import sys
 
+DELAY = sys.argv[1]
 # Get data
 curr_path = os.getcwd()
 jsonfiles = []
@@ -181,12 +183,12 @@ while True:
     '''
     # Draw a black filled box to clear the image.
     draw.rectangle((0,0,width,height), outline=0, fill=0)
-    if count > 360:
+    if count > DELAY:
         key = random.choice(short_quotes.keys())
         quote = short_quotes[key]
         quote_sentence = util.convertToDisplay(quote, 17)
         count = 0
-        
+       
     count = count + 1
 
     #print quote
@@ -209,13 +211,13 @@ while True:
         draw.text((0,23),str(quote[45:maxlen]),font=font,fill=255)
     '''
     if max_len > 0:
-        draw.text((0,0),str(quote_sentence[0]),font=font,fill=255)
+        draw.text((5,0),str(quote_sentence[0]),font=font,fill=255)
     if max_len > 1:
-        draw.text((0,7),str(quote_sentence[1]),font=font,fill=255)
+        draw.text((5,8),str(quote_sentence[1]),font=font,fill=255)
     if max_len > 2:
-        draw.text((0,15),str(quote_sentence[2]),font=font,fill=255)
+        draw.text((5,16),str(quote_sentence[2]),font=font,fill=255)
     if max_len > 3:
-        draw.text((0,23),str(quote_sentence[3]),font=font,fill=255)
+        draw.text((5,24),str(quote_sentence[3]),font=font,fill=255)
 
     disp.image(image)
     disp.display()
