@@ -1,7 +1,9 @@
 
 # goodreads-quotes-raspberry-pi
 
-![](https://github.com/abhinuvpitale/goodreads-quotes-raspberry-pi/blob/master/docs/static.png = 250x250)
+<p align="center">
+  <img width="480" src="https://github.com/abhinuvpitale/goodreads-quotes-raspberry-pi/blob/master/docs/static.png" />
+</p>
 
 ## What this widget does
 * Displays quotes scrapped from goodreads using a Raspberry Pi Zero and a Bonnet Keyboard
