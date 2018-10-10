@@ -1,3 +1,4 @@
+
 # goodreads-quotes-raspberry-pi
 
 ![](https://github.com/abhinuvpitale/goodreads-quotes-raspberry-pi/blob/master/docs/static.png = 250x250)
@@ -35,5 +36,6 @@ This is pretty useful as you can then create a configurable gift for someone or 
 The Dataplicity lets you create a remote header-less login over web. I found it super useful to implement my code on desktop and then push it to the pi using this headerless login.
 
 The instructions for the same are [here](https://dataplicity.com)
+
 
 
