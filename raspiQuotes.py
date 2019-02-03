@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # Copyright (c) 2017 Adafruit Industries
 # Author: Tony DiCola & James DeVito
 #
@@ -35,7 +36,7 @@ import json, os, random
 import util
 import sys
 
-DELAY = sys.argv[1]
+DELAY = int(sys.argv[1])
 # Get data
 curr_path = os.getcwd()
 jsonfiles = []
@@ -123,7 +124,7 @@ r_pin_old = 0
 key = random.choice(short_quotes.keys())
 quote = short_quotes[key]
 quote_sentence = util.convertToDisplay(quote, 17)
-print quote
+print quote_sentence
 max_len = len(quote_sentence)
 count  = 0
 while True:
@@ -187,6 +188,7 @@ while True:
         key = random.choice(short_quotes.keys())
         quote = short_quotes[key]
         quote_sentence = util.convertToDisplay(quote, 17)
+        print quote_sentence
         count = 0
        
     count = count + 1
